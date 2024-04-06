@@ -32,7 +32,7 @@ public class AirportController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<AirportResponseDto> getAirport(@PathVariable Long id) {
+    public ResponseEntity<AirportResponseDto> getAirportById(@PathVariable Long id) {
         Airport foundAirport = airportService.getAirportById(id);
         AirportResponseDto response = modelMapper.map(foundAirport, AirportResponseDto.class);
         return ResponseEntity.ok(response);

@@ -17,28 +17,9 @@ public class AirportService {
     private final AirportRepository airportRepository;
     private final ModelMapper modelMapper;
 
-    public Iterable<Airport> getAirports() {
-        return airportRepository
-                .findAll()
-                .stream()
-                .map(airport -> modelMapper.map(airport, Airport.class))
-                .toList();
-    }
-
     public Airport createAirport(AirportCreateRequestDto airportCreateRequest){
         Airport airport = modelMapper.map(airportCreateRequest, Airport.class);
         airport = airportRepository.save(airport);
-        return airport;
-    }
-
-    public Airport getAirportById(Long id) {
-        Optional<Airport> foundAirport = airportRepository.findById(id);
-
-        if (foundAirport.isEmpty()) {
-            throw new ResourceNotFoundException("Airport not found with id: " + id);
-        }
-
-        Airport airport = foundAirport.get();
         return airport;
     }
 
@@ -54,4 +35,24 @@ public class AirportService {
         airport = airportRepository.save(airport);
         return airport;
     }
+
+    public Iterable<Airport> getAirports() {
+        return airportRepository
+                .findAll()
+                .stream()
+                .map(airport -> modelMapper.map(airport, Airport.class))
+                .toList();
+    }
+
+    public Airport getAirportById(Long id) {
+        Optional<Airport> foundAirport = airportRepository.findById(id);
+
+        if (foundAirport.isEmpty()) {
+            throw new ResourceNotFoundException("Airport not found with id: " + id);
+        }
+
+        Airport airport = foundAirport.get();
+        return airport;
+    }
+
 }
