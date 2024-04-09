@@ -17,13 +17,13 @@ public class AirportService {
     private final AirportRepository airportRepository;
     private final ModelMapper modelMapper;
 
-    public Airport createAirport(AirportCreateRequestDto airportCreateRequest){
+    public AirportResponseDto createAirport(AirportCreateRequestDto airportCreateRequest){
         Airport airport = modelMapper.map(airportCreateRequest, Airport.class);
         airport = airportRepository.save(airport);
-        return airport;
+        return modelMapper.map(airport, AirportResponseDto.class);
     }
 
-    public Airport updateAirport(Long id, AirportCreateRequestDto airportCreateDto) {
+    public AirportResponseDto updateAirport(Long id, AirportCreateRequestDto airportCreateDto) {
         Optional<Airport> foundAirport = airportRepository.findById(id);
 
         if (foundAirport.isEmpty()) {
@@ -33,18 +33,18 @@ public class AirportService {
         Airport airport = foundAirport.get();
         airport.setCity(airportCreateDto.getCity());
         airport = airportRepository.save(airport);
-        return airport;
+        return modelMapper.map(airport, AirportResponseDto.class);
     }
 
-    public Iterable<Airport> getAirports() {
+    public Iterable<AirportResponseDto> getAirports() {
         return airportRepository
                 .findAll()
                 .stream()
-                .map(airport -> modelMapper.map(airport, Airport.class))
+                .map(airport -> modelMapper.map(airport, AirportResponseDto.class))
                 .toList();
     }
 
-    public Airport getAirportById(Long id) {
+    public AirportResponseDto getAirportById(Long id) {
         Optional<Airport> foundAirport = airportRepository.findById(id);
 
         if (foundAirport.isEmpty()) {
@@ -52,7 +52,7 @@ public class AirportService {
         }
 
         Airport airport = foundAirport.get();
-        return airport;
+        return modelMapper.map(airport, AirportResponseDto.class);
     }
 
 }

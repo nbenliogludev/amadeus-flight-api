@@ -21,35 +21,26 @@ public class AirportController {
     private final ModelMapper modelMapper;
 
     @GetMapping
-    public List<AirportResponseDto> getAllAirports() {
-        Iterable<Airport> airports = airportService.getAirports();
-        List<AirportResponseDto> airportResponseDtos = new ArrayList<>();
-        for (Airport airport : airports) {
-            AirportResponseDto dto = modelMapper.map(airport, AirportResponseDto.class);
-            airportResponseDtos.add(dto);
-        }
-        return airportResponseDtos;
+    public Iterable<AirportResponseDto> getAirports() {
+        return airportService.getAirports();
     }
 
     @GetMapping("/{id}")
     public ResponseEntity<AirportResponseDto> getAirportById(@PathVariable Long id) {
-        Airport foundAirport = airportService.getAirportById(id);
-        AirportResponseDto response = modelMapper.map(foundAirport, AirportResponseDto.class);
-        return ResponseEntity.ok(response);
+        AirportResponseDto foundAirport = airportService.getAirportById(id);
+        return ResponseEntity.ok(foundAirport);
     }
 
     @PostMapping
     public ResponseEntity<AirportResponseDto> createAirport(@RequestBody AirportCreateRequestDto airportCreateRequest){
-        Airport createdAirport = airportService.createAirport(airportCreateRequest);
-        AirportResponseDto response = modelMapper.map(createdAirport, AirportResponseDto.class);
-        return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        AirportResponseDto createdAirport = airportService.createAirport(airportCreateRequest);
+        return ResponseEntity.status(HttpStatus.CREATED).body(createdAirport);
     }
 
     @PutMapping("/{id}")
     public ResponseEntity<AirportResponseDto> updateAirport(@PathVariable Long id, @RequestBody AirportCreateRequestDto airportCreateDto) {
-        Airport updatedAirport = airportService.updateAirport(id, airportCreateDto);
-        AirportResponseDto response = modelMapper.map(updatedAirport, AirportResponseDto.class);
-        return ResponseEntity.ok(response);
+        AirportResponseDto updatedAirport = airportService.updateAirport(id, airportCreateDto);
+        return ResponseEntity.ok(updatedAirport);
     }
 
 }

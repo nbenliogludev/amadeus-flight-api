@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
+import com.nikben08.amadeusflightapi.dto.flight.FlightResponseDto;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
@@ -20,10 +21,31 @@ public class FlightService {
     private final AirportRepository airportRepository;
     private final ModelMapper modelMapper;
 
-    public Flight createFlight(FlightCreateRequestDto flightCreateRequest){
+    public Iterable<FlightResponseDto> getAllFlights() {
+        return flightRepository
+                .findAll()
+                .stream()
+                .map(flight -> modelMapper.map(flight, FlightResponseDto.class))
+                .toList();
+    }
+
+    public FlightResponseDto findFlightById(Long id) {
+        Flight foundFlight = getFlightById(id);
+        return modelMapper.map(foundFlight, FlightResponseDto.class);
+    }
+
+    private Flight getFlightById(Long id) {
+        Optional<Flight> flight = flightRepository.findById(id);
+        if (flight.isEmpty()) {
+            throw new ResourceNotFoundException("Flight not found with id: " + id);
+        }
+        return flight.get();
+    }
+
+    public FlightResponseDto createFlight(FlightCreateRequestDto flightCreateRequest){
         Flight flight = modelMapper.map(flightCreateRequest, Flight.class);
         Flight createdFlight = flightRepository.save(flight);
-        return createdFlight;
+        return modelMapper.map(createdFlight, FlightResponseDto.class);
     }
 
     private Airport getAirportById(Long id) {
@@ -56,31 +78,19 @@ public class FlightService {
         flight.setUpdatedAt(LocalDateTime.now());
     }
 
-    public Flight updateFlight(Long id, FlightCreateRequestDto flightCreateRequest) {
+    public FlightResponseDto updateFlight(Long id, FlightCreateRequestDto flightCreateRequest) {
         Flight updatedFlight = getFlightById(id);
         updateFlightFromDto(updatedFlight, flightCreateRequest);
 
         updatedFlight = flightRepository.save(updatedFlight);
-        return updatedFlight;
+        return modelMapper.map(updatedFlight, FlightResponseDto.class);
     }
 
-    public Iterable<Flight> getFlights() {
-        return flightRepository
-                .findAll()
-                .stream()
-                .toList();
-    }
-
-    public Flight getFlightById(Long id) {
-        Optional<Flight> foundFlight = flightRepository.findById(id);
-
-        if (foundFlight.isEmpty()) {
-            throw new ResourceNotFoundException("Airport not found with id: " + id);
+    public void deleteFlight(Long id) {
+        if (!flightRepository.existsById(id)) {
+            throw new ResourceNotFoundException("Flight not found with id: " + id);
         }
-
-        Flight flight = foundFlight.get();
-        return flight;
+        flightRepository.deleteById(id);
     }
-
 
 }
