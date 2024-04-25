@@ -2,19 +2,6 @@
 
 This is the Backend (Java) Developer Case Assignment within the Future Talent Program of Amadeus & Coderspace.
 
-## Table of Contents
-
-- [About](#about)
-- [Technologies Used](#technologies-used)
-- [Getting Started](#getting-started)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
-
-## About
-
-Brief overview of your project. Include its purpose, key features, and any other relevant information.
-
 ## Technologies Used
 
 - Java
