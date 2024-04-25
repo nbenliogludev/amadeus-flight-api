@@ -1,6 +1,6 @@
 # Project Title
 
-Short description of your project.
+This is the Backend (Java) Developer Case Assignment within the Future Talent Program of Amadeus & Coderspace.
 
 ## Table of Contents
 
