@@ -2,7 +2,7 @@
 This is the Backend (Java) Developer Case Assignment within the Future Talent Program of Amadeus & Coderspace.
 <br>
 <br>
-Author: <a href="https://github.com/selimsahindev" target="_blank">selimsahindev</a>
+Author: <a href="https://github.com/nikben08" target="_blank">nikben08</a>
 <br>
 <br>
 
