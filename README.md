@@ -18,7 +18,7 @@ Prepare your PostgreSQL server and then seed your airports and flights using the
 <br>
 
 ## You can also find the Postman documentation here!
-<a href="https://www.postman.com/selimsahindev/workspace/amadeus-flight-api/collection/9112554-c03fd498-a6e0-411c-9aea-91f1dc00b84b?action=share&creator=9112554" target="_blank"><strong>Run in Postman</strong></a> 🚀
+<a href="https://documenter.getpostman.com/view/5602393/2sA3BuUnvb" target="_blank"><strong>Run in Postman</strong></a> 🚀
 
 You will need to set up Basic Authentication in Postman before executing any requests. To do this, you should create an API user with appropriate credentials.
 
