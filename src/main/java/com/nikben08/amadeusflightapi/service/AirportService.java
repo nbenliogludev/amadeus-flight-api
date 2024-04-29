@@ -54,5 +54,4 @@ public class AirportService {
         Airport airport = foundAirport.get();
         return modelMapper.map(airport, AirportResponseDto.class);
     }
-
 }
