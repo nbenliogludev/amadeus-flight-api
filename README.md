@@ -6,6 +6,24 @@ Author: <a href="https://github.com/nikben08" target="_blank">nikben08</a>
 <br>
 <br>
 
+## Docker Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/vtataroglu/goruntuIsleme.git
+    ```
+
+2. Navigate to the root directory:
+    ```bash
+    cd goruntuIsleme/fabric-quality-control
+    ```
+
+2. Run container:
+    ```bash
+    docker-compose up
+    ```
+
+
 ## Check out the Swagger API documentation 📦
 You need to run the project on your local environment first.
 <br>
