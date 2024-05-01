@@ -10,7 +10,7 @@ Author: <a href="https://github.com/nikben08" target="_blank">nikben08</a>
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/vtataroglu/goruntuIsleme.git
+    git clone https://github.com/nikben08/amadeus-flight-api.git
     ```
 
 2. Navigate to the root directory:
