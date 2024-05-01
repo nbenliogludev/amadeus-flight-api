@@ -15,7 +15,7 @@ Author: <a href="https://github.com/nikben08" target="_blank">nikben08</a>
 
 2. Navigate to the root directory:
     ```bash
-    cd goruntuIsleme/fabric-quality-control
+    cd amadeus-flight-api/
     ```
 
 2. Run container:
