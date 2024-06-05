@@ -27,4 +27,4 @@ services:
       - POSTGRES_PASSWORD=0811
       - POSTGRES_DB=amadeus_flight
     ports:
-      - "5432:5432"
+      - "5433:5432"

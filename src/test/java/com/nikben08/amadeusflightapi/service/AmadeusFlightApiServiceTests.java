@@ -11,10 +11,7 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.modelmapper.ModelMapper;
 
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 public class AmadeusFlightApiServiceTests {
@@ -35,7 +32,6 @@ public class AmadeusFlightApiServiceTests {
 
     @Test
     public void testCreateAirport() {
-        // Создаем тестовые данные
         AirportCreateRequestDto requestDto = new AirportCreateRequestDto();
         requestDto.setCity("New York");
 
@@ -46,7 +42,6 @@ public class AmadeusFlightApiServiceTests {
         when(modelMapper.map(airport, AirportResponseDto.class)).thenReturn(responseDto);
         when(airportRepository.save(airport)).thenReturn(airport);
 
-        // Вызываем метод, который тестируем
         AirportResponseDto createdAirport = airportService.createAirport(requestDto);
 
         assertNotNull(createdAirport);
