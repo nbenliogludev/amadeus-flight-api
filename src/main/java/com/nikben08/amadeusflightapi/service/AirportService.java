@@ -9,6 +9,7 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,7 +37,7 @@ public class AirportService {
         return modelMapper.map(airport, AirportResponseDto.class);
     }
 
-    public Iterable<AirportResponseDto> getAirports() {
+    public List<AirportResponseDto> getAirports() {
         return airportRepository
                 .findAll()
                 .stream()

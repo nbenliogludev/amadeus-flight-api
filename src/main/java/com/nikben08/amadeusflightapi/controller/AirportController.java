@@ -2,15 +2,12 @@ package com.nikben08.amadeusflightapi.controller;
 
 import com.nikben08.amadeusflightapi.dto.airport.AirportCreateRequestDto;
 import com.nikben08.amadeusflightapi.dto.airport.AirportResponseDto;
-import com.nikben08.amadeusflightapi.model.Airport;
 import com.nikben08.amadeusflightapi.service.AirportService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -18,10 +15,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AirportController {
     private final AirportService airportService;
-    private final ModelMapper modelMapper;
 
     @GetMapping
-    public Iterable<AirportResponseDto> getAirports() {
+    public List<AirportResponseDto> getAirports() {
         return airportService.getAirports();
     }
 
@@ -42,5 +38,4 @@ public class AirportController {
         AirportResponseDto updatedAirport = airportService.updateAirport(id, airportCreateDto);
         return ResponseEntity.ok(updatedAirport);
     }
-
 }
