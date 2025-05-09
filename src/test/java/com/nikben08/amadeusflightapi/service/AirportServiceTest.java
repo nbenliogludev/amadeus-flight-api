@@ -8,6 +8,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.modelmapper.ModelMapper;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
@@ -42,5 +44,27 @@ public class AirportServiceTest {
 
         assertEquals(responseDto, expectedResponse);
         verify(airportRepository).save(airport);
+    }
+
+    @Test
+    public void testGetAirports(){
+        Airport airport1 = new Airport();
+        Airport airport2 = new Airport();
+        List<Airport> airportsList = List.of(airport1, airport2);
+
+        AirportResponseDto responseDto1 = new AirportResponseDto();
+        AirportResponseDto responseDto2 = new AirportResponseDto();
+
+        when(airportRepository.findAll()).thenReturn(airportsList);
+        when(modelMapper.map(airport1, AirportResponseDto.class)).thenReturn(responseDto1);
+        when(modelMapper.map(airport2, AirportResponseDto.class)).thenReturn(responseDto2);
+
+        List<AirportResponseDto> result = airportService.getAirports();
+
+        assertEquals(2, result.size());
+        assertEquals(responseDto1, result.get(0));
+        assertEquals(responseDto2, result.get(1));
+        verify(airportRepository).findAll();
+        verify(modelMapper, times(2)).map(any(Airport.class), eq(AirportResponseDto.class));
     }
 }
